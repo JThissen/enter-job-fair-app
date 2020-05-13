@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;    
+    margin: 0;
+  }
+
+.footer{
+    flex-shrink: 0;
+}
+
+.main{
+    flex: 1 0 auto;
+    background: #621f52 linear-gradient(135deg, #9e5767 0%, #6c1757 50%, #23275c 100%);
+}
+
+.progress_bar{
+    position: absolute;
+    z-index: 2;
+}

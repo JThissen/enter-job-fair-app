@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+html, body { 
+    height: 100%; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+/* app-root{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+} */
+
+.mat-checkbox-inner-container{
+    margin-left: 0px !important;
+    margin-top: 10px !important;
+}
+
+/* .mat-radio-button.mat-radio-disabled.mat-radio-checked .mat-radio-outer-circle, .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle{
+    border-color: rgba(105, 240, 174, 1);
+} */
+
+.mat-radio-button.mat-radio-disabled .mat-radio-ripple .mat-ripple-element, .mat-radio-button.mat-radio-disabled .mat-radio-inner-circle{
+    background-color: rgba(105, 240, 174, 1);
+}
+
+.mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background{
+    background-color: rgba(105, 240, 174, 1);
+}
+
+.mat-step-header {
+    pointer-events: none !important;
+  }
+
+.mat-drawer-backdrop.mat-drawer-shown{
+    background-color: rgba(0, 0, 0, 0.6);
+}

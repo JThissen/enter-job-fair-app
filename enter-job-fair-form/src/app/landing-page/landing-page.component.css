@@ -1,0 +1,404 @@
+.background{
+    width: 100%;
+    padding-top: 250px;
+    padding-bottom: 250px;
+}
+
+
+
+.background_second{
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 300px;
+}
+
+.enter_image{
+    width: 100%;
+    min-width: 300px;
+    max-width: 350px;
+    margin-bottom: 100px;
+}
+
+.title-container{
+    margin-bottom: 64px;
+}
+
+.headerline{
+    margin-bottom: -10px;
+    font-weight: 500;
+    font-size: 46px;
+}
+
+.subheading{
+    color: rgba(105, 240, 174, 1);
+    font-weight: 300;
+    font-size: 21px;
+    margin-bottom: 0px;
+}
+
+.card-container{
+    width: 95%;
+    height: 100%;
+    color: rgba(255, 255, 255, 1.0);
+    margin-bottom: 5px;
+}
+
+.card-content{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 400px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    font-weight: 300;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    max-height: 400px;
+    max-width: 300px;
+}
+
+.test-content{
+    max-height: unset;
+    transition: max-height 0.5s linear;
+}
+
+.card-content-new{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 75px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    font-weight: 300;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.card-content:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.selected{
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+#eindhoven{
+    background: linear-gradient(45deg, #c96881 0%,#f7b695 100%);
+}
+
+#delft{
+    background: linear-gradient(45deg, #6B6ECC 0%, #89BFDF 100%);
+}
+
+#twente{
+    background: linear-gradient(45deg, #81B77B 0%, #A3E3C3 100%);
+}
+
+.select_university{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.and{
+    margin-bottom: 25px;
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 60px;
+    /* margin-bottom: 50px; */
+}
+
+.button{
+    background-image: linear-gradient(135deg, #53e4ae 0%, #43aa96 100%);
+    border: 0px solid;
+    padding: 0px 30px;
+    height: 51.31px;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+    margin-left: 10px;
+}
+
+.button:hover{
+    box-shadow: 0px 0px 10px #43aa96;
+}
+
+.button:hover:disabled{
+    box-shadow: unset;
+}
+
+.button:disabled{
+    background-image: unset;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.image-test{
+    object-fit: cover;
+}
+
+.image-eindhoven{
+    max-width:100%;
+    height: auto;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    user-select: none;
+}
+
+.image-eindhoven_logo{
+    display: block;
+    margin: auto;
+    padding-top: 6px;
+}
+
+.card-footer{
+    margin-top: auto;
+    height: 10px;
+    width: 100%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+#footer-eindhoven{
+    background-color: rgba(231, 155, 142, 1.0);
+}
+
+#footer-delft{
+    background-color: rgba(125, 160, 216, 1.0);
+}
+
+#footer-twente{
+    background-color: rgba(146, 205, 160, 1.0);
+}
+    
+
+.card-title{
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.64);
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-top: 60px;
+}
+
+.card-university{
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    font-size: 25px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
+    text-align: center;
+    /* line-height: 1.5; */
+}
+
+.card-button{
+    position: absolute;
+    bottom: -14px;
+    background: linear-gradient(-90deg, #fe5e7d 0%,#e5375b 100%);
+    padding: 6px;
+    width: 50%;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 0px 40px 4px #F76583, 0px 0px 0px 2px rgba(255, 255, 255, 0.19) inset;
+    font-weight: 500;
+    transition: transform 0.3s 0.1s ease;
+    transform: scale(0.94);
+}
+
+.card-button:hover{
+    transform: scale(1);
+}
+
+.card-circle{
+    position: absolute;
+    bottom: 145px;
+    background-color: white;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+.card-inner_circle{
+    position: absolute;
+    bottom: 152px;
+    background-color: #F1F0ED;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.mat-form-field{
+    width: 300px;
+}
+
+.admin{
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 30px;
+}
+
+.admin-span{
+    color: #9e5767;
+    transition: color 0.25s ease;
+}
+
+.admin-span:hover{
+    color: #9c6a76;
+    cursor: pointer;
+}
+
+.progress_bar{
+    position: absolute;
+}
+
+/* .glide-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.glide-slides{
+    list-style: unset;
+}
+
+.glide{
+    position: relative;
+}
+
+.glide-arrows{
+    width: 110%;
+    position: absolute;
+    top: 200px;
+    right: -45px;
+}
+
+/* .glide_arrow_icon{
+    color: white;
+} */
+
+/* .glide__slide{
+    filter: blur(6px);
+} */
+
+
+/* .glide__slide{
+    transition: .1s linear;
+}
+
+.glide__slide--active{
+    transform: scale(1.05);
+    overflow: visible;
+} */
+
+.hidden{
+    display: none;
+}
+
+.show-icon{
+    height: 27px;
+}
+
+.show_events{
+    margin-top: 40px;
+    width: 300px;
+}
+
+.get_started_container{
+    margin-bottom: 60px;
+}
+
+:host ::ng-deep .mat-form-field-wrapper{
+    margin: 0 !important;
+    padding: 0;
+}
+
+.toolbar-spacer{
+    flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary{
+    background-color: transparent;
+}
+
+.toolbar-icon{
+    margin-right: 16px;
+}
+
+.toolbar-icon:hover{
+    margin-right: 16px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.25s ease;
+}
+
+.toolbar{
+    position: absolute;
+}
+
+.select-event{
+    padding-right: 10px;
+}
+
+
+@media screen and (max-width: 599px){
+    .background{
+        width: 100%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .enter_image{
+        /* width: 100%;
+        min-width: 300px;
+        max-width: 350px; */
+        width: 300px;
+        margin-bottom: 100px;
+    }
+
+    .select-event{
+        margin-bottom: 25px;
+        padding-right: 0px;
+    }
+
+    .button{
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .card-container{
+        max-width: 300px;
+    }
+
+    .form-content{
+        padding: 100px 20px;
+    }
+}
+
+
+
+@media screen and (min-width: 600) and (max-width: 1279px){
+    .form-content{
+        color: white;
+        padding: 168px 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (min-width: 1280px){
+    .form-content{
+        color: white;
+        padding: 168px 112px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -1,0 +1,282 @@
+<div class="sidenav-content-container">
+    <div class="mat-display-2 events" style="margin: 0px">
+      Events
+      <mat-icon class="sidenav-title-icon">event</mat-icon>
+    </div>
+    <div class="mat-h2 sidenav-subtitle">
+        Allows for the creation and modification of Events.
+    </div>
+</div>
+
+<div class="sidenav-content-container" style="margin-top: 50px;" ngStyle.xs="margin-top: 20px;">
+    <div class="mat-h1" style="margin-bottom: 0px;">
+        Current events
+    </div>
+    <div class="mat-h2 sidenav-subtitle-2">
+        Edit & delete
+    </div>
+      <mat-form-field appearance="outline" color="accent">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Computer Science">
+      </mat-form-field>
+        
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="this.current_universities_data" multiTemplateDataRows matSort>
+          <ng-container matColumnDef="visible">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Visible</th>
+            <td mat-cell *matCellDef="let row; let index = dataIndex;">
+              <mat-checkbox name="checkbox" 
+                [checked]="this.visible(row)"
+                (change)="this.checkbox_change(row, index)"> 
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+            <td mat-cell *matCellDef="let row">{{row.location}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="event_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row">{{row.event_name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="event_year">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
+            <td mat-cell *matCellDef="let row">{{row.event_year}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef>Image</th>
+            <td mat-cell *matCellDef="let row">
+              <img class="table-image" [src]="row.image" alt="Enter logo">
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="icon">
+            <th mat-header-cell *matHeaderCellDef>Icon</th>
+            <td mat-cell *matCellDef="let row">
+              <img class="table-icon" [src]="row.icon" alt="Enter logo">
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="study_programs">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Study programs</th>
+            <td mat-cell *matCellDef="let row">{{this.show_study_programs(row)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>   
+            <td mat-cell *matCellDef="let row; let i = dataIndex;">
+              <div fxLayout="row" fxLayoutAlign="end none">
+                  <mat-icon style="user-select: none" matTooltip="Edit event" (click)="expandedElement = expandedElement === row.id ? null : row.id;">create</mat-icon>
+                  <mat-icon style="user-select: none" matTooltip="Delete event" (click)="this.remove_university(i)">delete</mat-icon>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="expanded_row">
+            <td mat-cell *matCellDef="let element; let j = dataIndex;" [attr.colspan]="this.column_names.length">
+              <div class="table-expanded_row-container" [@detailExpand]="element.id == expandedElement ? 'expanded' : 'collapsed'"> 
+
+                <div class="mat-h2 sidenav-subtitle">
+                  Edit
+                </div>
+                
+                <mat-form-field appearance="fill" color="accent">
+                  <mat-label>Title</mat-label>
+                  <input matInput placeholder="e.g. Delft University of Technology" [formControl]="this.edit_name">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.edit_change_name(this.edit_name, j, element); expandedElement = element.id;">
+                      <mat-icon matTooltip="Edit name" style="margin-right: 18px;">create</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" color="accent">
+                  <mat-label>Location</mat-label>
+                  <input matInput placeholder="e.g. Delft" [formControl]="this.edit_location">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.edit_change_location(this.edit_location, j)">
+                      <mat-icon matTooltip="Edit location" style="margin-right: 18px;">create</mat-icon>
+                  </button>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" color="accent">
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="e.g. De Delftse Bedrijfsdagen" [formControl]="this.edit_event_name">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.edit_change_event_name(this.edit_event_name, j)">
+                      <mat-icon matTooltip="Edit name" style="margin-right: 18px;">create</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" color="accent">
+                  <mat-label>Year</mat-label>
+                  <input matInput placeholder="e.g. 2020" [formControl]="this.edit_event_year">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.edit_change_event_year(this.edit_event_year, j)">
+                      <mat-icon matTooltip="Edit year" style="margin-right: 18px;">create</mat-icon>
+                  </button>
+                </mat-form-field>
+
+              <div style="display: flex; flex-direction: row;">
+                <mat-form-field appearance="fill" color="accent">
+                    <mat-label>Study program</mat-label>
+                    <input matInput placeholder="e.g. Computer Science" [formControl]="this.edit_study_program">
+                    <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.edit_add_study_program(this.edit_study_program, j)">
+                        <mat-icon matTooltip="Add study program" style="margin-right: 18px;">add</mat-icon>
+                    </button>
+                </mat-form-field>
+              </div>
+                
+                <ul class="create-list" style="margin-top: -18px">
+                  <li class="create-list-item mat-body" *ngFor="let item of this.university_data[j].study_programs; let i = index" [attr.data-index]="i" [ngStyle]="{'background-color': this.set_color(i)}">
+                      <div fxLayout="row" class="create-list-item-div">
+                          {{item}}
+                          <mat-icon class="create-list-icon" matTooltip="Delete {{item}}" (click)="this.edit_remove_study_program(j, i)">delete</mat-icon>
+                      </div>
+                  </li>
+                </ul>
+
+                <mat-form-field color="accent" appearance="fill" style="margin-top: 5px;">
+                  <mat-label #image_label>Image (300 x 220) [.png]</mat-label>
+                  <input matInput placeholder="e.g. 2020" [formControl]="this.edit_image">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.send_index(j)">
+                      <mat-icon matTooltip="Edit image" (click)="this.image_input_ref.nativeElement.click()" style="margin-right: 18px;">attach_file</mat-icon>
+                      <input #image_input hidden accept=".png" (change)="this.upload_image()"  type="file">
+                  </button>
+                </mat-form-field>
+
+                <mat-form-field color="accent" appearance="fill">
+                  <mat-label #icon_label>Icon (50 x 50) [.png]</mat-label>
+                  <input matInput placeholder="e.g. 2020" [formControl]="this.edit_icon">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.send_index(j)">
+                      <mat-icon matTooltip="Edit icon" (click)="this.icon_input_ref.nativeElement.click()" style="margin-right: 18px;">attach_file</mat-icon>
+                      <input #icon_input hidden accept=".png" (change)="this.upload_icon()"  type="file">
+                  </button>
+                </mat-form-field>
+
+              </div>  
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="this.column_names"></tr>
+          <tr mat-row *matRowDef="let element; columns: this.column_names;" class="table-row" ></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expanded_row']" class="table-expanded_row"></tr>
+        </table>
+      
+      </div>
+      <mat-paginator class="table-paginator" [pageSize]="this.page_size" [pageSizeOptions]="[5, 10, 25, 50, 100]" color="accent" showFirstLastButtons></mat-paginator>
+</div>
+
+    <div #expand_container class="sidenav-content-container" style="margin-top: 50px;" ngStyle.xs="margin-top: 20px; margin-bottom: 25px;">
+        <div class="mat-h1">
+            Create an event
+        </div>
+        <div class="table-expanded_row-button-container">
+            <button mat-raised-button color="accent" type="button" (click)="this.create_university()" [disabled]="this.create_disabled">
+              Create
+            </button>
+        </div>
+
+        <div #stepper_container class="stepper-container hidden">
+          <mat-vertical-stepper linear #stepper>
+              <mat-step completed="false">
+                  <ng-template class="create-step-1" matStepLabel>Fill out the <span style="color: #69f0ae;">title</span> of the event.</ng-template>
+                  <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                      <mat-label>Title</mat-label>
+                      <input matInput placeholder="e.g. Delft University of Technology" [formControl]="this.university_name">
+                  </mat-form-field>
+                  <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next(this.university_name)">
+                    Next
+                  </button>
+              </mat-step>
+              <mat-step completed="false">
+                <ng-template class="create-step-1" matStepLabel>Fill out the <span style="color: #69f0ae;">location</span> of the event.</ng-template>
+                <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                    <mat-label>Location</mat-label>
+                    <input matInput placeholder="e.g. Delft" [formControl]="this.university_location">
+                </mat-form-field>
+                <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next(this.university_location)">
+                  Next
+                </button>
+              </mat-step>
+              <mat-step completed="false">
+                <ng-template class="create-step-1" matStepLabel>Fill out the <span style="color: #69f0ae;">name</span> of the event.</ng-template>
+                <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="e.g. De Delftse Bedrijvendagen" [formControl]="this.create_event_name">
+                </mat-form-field>
+                <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next(this.create_event_name)">
+                  Next
+                </button>
+              </mat-step>
+              <mat-step completed="false">
+                <ng-template class="create-step-1" matStepLabel>Fill out the <span style="color: #69f0ae;">year</span> of the event.</ng-template>
+                <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                    <mat-label>Year</mat-label>
+                    <input matInput placeholder="e.g. 2020" [formControl]="this.create_event_year">
+                </mat-form-field>
+                <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next_int(this.create_event_year)">
+                  Next
+                </button>
+              </mat-step>
+              <mat-step completed="false">
+                <ng-template class="create-step-1" matStepLabel>Add an <span style="color: #69f0ae;">image</span> to the event.</ng-template>
+                <mat-form-field appearance="outline" color="accent" appearance="fill">
+                  <mat-label #image_create_label>Image (300 x 220) [.png]</mat-label>
+                  <input matInput placeholder="e.g. 2020" [formControl]="this.create_event_image">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix>
+                      <mat-icon matTooltip="Upload image" (click)="this.image_create_input_ref.nativeElement.click()" style="margin-right: 18px;">attach_file</mat-icon>
+                      <input #image_create_input hidden accept=".png" (change)="this.upload_create_image()"  type="file">
+                  </button>
+                </mat-form-field>
+                <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next_file(this.create_event_image)">
+                  Next
+                </button>
+              </mat-step>
+
+              <mat-step completed="false">
+                <ng-template class="create-step-1" matStepLabel>Add an <span style="color: #69f0ae;">icon</span> to the event.</ng-template>
+                <mat-form-field appearance="outline" color="accent" appearance="fill">
+                  <mat-label #icon_create_label>Icon (50 x 50) [.png]</mat-label>
+                  <input matInput placeholder="e.g. 2020" [formControl]="this.create_event_icon">
+                  <button style="display: flex; justify-content: center;" mat-icon-button matSuffix>
+                      <mat-icon matTooltip="Upload icon" (click)="this.icon_create_input_ref.nativeElement.click()" style="margin-right: 18px;">attach_file</mat-icon>
+                      <input #icon_create_input hidden accept=".png" (change)="this.upload_create_icon()"  type="file">
+                  </button>
+                </mat-form-field>
+                <button mat-stroked-button color="accent" type="button" (click)="this.stepper_next_file(this.create_event_icon)">
+                  Next
+                </button>
+              </mat-step>
+
+              <mat-step>
+                  <ng-template class="create-step-1" matStepLabel>Add one or multiple <span style="color: #69f0ae;">study programs</span>.</ng-template>
+                  <div style="display: flex; flex-direction: row;">
+                      <mat-form-field appearance="outline" color="accent">
+                          <mat-label>Study program</mat-label>
+                          <input matInput placeholder="e.g. Computer Science" [formControl]="this.study_program">
+                          <button style="display: flex; justify-content: center;" mat-icon-button matSuffix (click)="this.add_study_program(this.study_program)">
+                              <mat-icon matTooltip="Add" style="margin-right: 18px;">add</mat-icon>
+                          </button>
+                      </mat-form-field>
+                  </div>
+                  
+                  <ul class="create-list">
+                      <li class="create-list-item mat-body" *ngFor="let item of this.study_programs; let i = index" [attr.data-index]="i" [ngStyle]="{'background-color': this.set_color(i)}">
+                          <div fxLayout="row" class="create-list-item-div">
+                              {{item}}
+                              <mat-icon class="create-list-icon" matTooltip="Delete: {{item}}" (click)="this.remove_study_program(i)">delete</mat-icon>
+                          </div>
+                      </li>
+                  </ul>
+                  <button mat-stroked-button color="accent" type="button" matStepperNext (click)="this.complete()">
+                      Complete
+                  </button>
+              </mat-step>
+          </mat-vertical-stepper>
+      </div>
+    </div>

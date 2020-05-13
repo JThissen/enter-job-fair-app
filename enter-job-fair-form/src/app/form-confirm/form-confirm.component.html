@@ -1,0 +1,104 @@
+<div class="background">
+    <form class="form-content" (ngSubmit)="this.form_data.on_submit()" fxLayout="column" fxLayoutAlign="start">
+        <div id="event_header">{{this.form_data.university_data?.event_name}}</div>
+        <div #event_subheader id="event_subheader">{{this.form_options.event_subheader}}</div>
+        <div id="event_confirmation">CONFIRMATION</div>
+
+        <div fxLayout.lt-sm="column" fxLayout="row" fxLayoutGap.lt-sm="0px" fxLayoutGap="23px">
+            <mat-form-field class="form-content-full-width" appearance="fill" color="accent" disabled>
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="e.g. James" [formControl]="this.form_data.first_name">
+                <mat-error *ngIf="this.form_data.first_name.hasError('pattern')"></mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-content-full-width" appearance="fill" color="accent">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder="e.g. Smith" [formControl]="this.form_data.last_name">
+                <mat-error *ngIf="this.form_data.last_name.hasError('pattern')"></mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field class="form-content-full-width" appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="e.g. info@enter-group.nl" [formControl]="this.form_data.email">
+            <mat-error *ngIf="this.form_data.email.hasError('email')"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-content-full-width" appearance="fill" color="accent">
+            <mat-label>Phone number</mat-label>
+            <input id="test123" matInput placeholder="e.g. +31 (0)40 214 1020" type="text" [formControl]=this.form_data.phone_number>
+        </mat-form-field>
+        
+        <div class="form-content-radio">
+            <label class="form-content-radio-group-title">Study information</label>
+            <mat-radio-group class="form-content-radio-group">
+                <mat-radio-button class="form-content-radio-button" *ngFor="let i of this.form_options.study_information_options" [value]="i" [checked]="i === this.form_data.study_information.value" [disabled]=true>
+                    <div *ngIf="i === this.form_options.study_information_options[1]; else elseBlock">
+                        <div class="form-content-radio-button-container">
+                            <div class="form-content-radio-button-left">{{i}}</div>
+                            <mat-form-field #track_field class="form-content-radio-button-right" appearance="fill" color="accent">
+                                <mat-label>Track</mat-label>
+                                <input matInput placeholder="e.g. Software Technology" [formControl]=this.form_data.study_information_track>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div class="form-content-radio-button-left">{{i}}</div>
+                    </ng-template>
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-divider class="divider"></mat-divider>
+
+            <mat-radio-group fxLayout="row wrap" class="form-content-radio-group">
+                <mat-radio-button fxFlex="50%" class="form-content-radio-button" *ngFor="let i of this.form_data.university_data?.study_programs" [value]="i" [checked]="i === this.form_data.study_program.value" (change)="this.form_data.set_form_control_value(this.form_data.study_program, $event);" [disabled]=true>
+                    {{i}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field class="form-content-full-width" appearance="fill" style="margin-top: 25px" color="accent">
+            <mat-label>Graduation date (expected)</mat-label>
+            <input matInput placeholder="e.g. 01/09/2020" [matDatepicker]="picker_graduation" [formControl]="this.form_data.graduation_date">
+            <mat-datepicker-toggle matSuffix [for]="picker_graduation"></mat-datepicker-toggle>
+            <mat-datepicker #picker_graduation></mat-datepicker>
+
+        </mat-form-field>
+
+        <mat-form-field class="form-content-full-width" appearance="fill" color="accent">
+            <mat-label>Available as of:</mat-label>
+            <input matInput placeholder="e.g. 01/10/2020" [matDatepicker]="picker_available" [formControl]="this.form_data.availability_date">
+            <mat-datepicker-toggle matSuffix [for]="picker_available"></mat-datepicker-toggle>
+            <mat-datepicker #picker_available></mat-datepicker>
+        </mat-form-field>
+
+        <div class="form-content-privacy">
+            <div class="mat-body">Are you able to speak Dutch?</div>
+            <mat-checkbox name="checkbox" [(ngModel)]="this.form_options.dutch_speaking_checkbox" [labelPosition]="this.form_options.label_position" [formControl]=this.form_data.dutch_speaking></mat-checkbox>
+        </div>
+
+        <div class="form-content-lunch">
+            <div class="mat-body">Do you want to have a chance at participating in the ENTER Career Lunch?</div>
+            <div class="mat-caption" style="color: rgba(105, 240, 174, 1);">Please note that you must leave your phone number in order to be eligible to join.</div>
+            <mat-checkbox name="checkbox" [(ngModel)]="this.form_options.career_lunch_participation_checkbox" [labelPosition]="this.form_options.label_position" [formControl]=this.form_data.career_lunch_participation></mat-checkbox>
+        </div>
+
+        <mat-form-field class="form-content-notes" appearance="fill" color="accent">
+            <mat-label>Notes</mat-label>
+            <textarea class="form-content-notes-textarea" matInput maxLength="1000" placeholder="Leave a remark." [formControl]=this.form_data.notes></textarea>
+            <div class="mat-caption" style="color: rgba(255, 255, 255, 0.7); font-size: 11px;">characters left: {{this.form_options.notes_characters_left}}</div>
+        </mat-form-field>
+
+        <div class="form-content-privacy">
+            <div class="mat-caption">By filling out this form you agree with the storage and handling of your data by this website in accordance without our privacy policy. We handle your information with the greatest care. Your data can be removed upon your request at any time.</div>
+            <mat-checkbox name="checkbox" [(ngModel)]="this.form_options.privacy_data_checkbox" [labelPosition]="this.form_options.label_position" [formControl]=this.form_data.privacy_data></mat-checkbox>
+        </div>
+
+        <div class="form-content-button-container">
+            <button mat-raised-button class="form-content-button" type="submit" (click)="this.confirm_and_submit('/job-fair-form/confirm/submit')">
+                Confirm & Submit
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>

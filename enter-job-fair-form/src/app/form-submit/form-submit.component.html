@@ -1,0 +1,16 @@
+<div class="background" fxLayout="column" fxLayoutAlign="none none">
+    <div class="form-content" fxLayout="column" fxLayoutAlign="none none">
+        <div id="event_header">{{this.event_header}}</div>
+        <div id="event_subheader">{{this.event_subheader}}</div>
+        <div id="event_greeting" class="mat-h2">{{this.event_greeting}}</div>
+        
+        <div class="form-content-button-container">
+            <button mat-raised-button class="form-content-button" type="button" (click)="this.to_launch_page('/')">
+                Continue 
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+        <div class="mat-caption form-content-redirect">{{this.event_redirected}}</div>
+
+    </div>
+</div>

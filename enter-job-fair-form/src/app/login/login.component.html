@@ -1,0 +1,26 @@
+<div class="background">
+    <div class="form-border">
+        <div class="form-content" fxLayout="column" fxLayoutAlign="center center">
+            <img class="enter_image" src="assets/logo-slogan-footer.svg" alt="Enter logo">
+            <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Please enter your username." type="text" [formControl]=this.username>
+            </mat-form-field>
+
+            <mat-form-field class="form-content-full-width" appearance="outline" color="accent">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Please enter your password." [type]="this.hide_password ? 'password' : 'text'" [formControl]="this.password">
+                <button mat-icon-button matSuffix (click)="this.hide_password = !this.hide_password">
+                <mat-icon>{{this.hide_password ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            
+            <div class="button-container">
+                <button mat-raised-button class="button" type="button" (click)="this.reroute('/login/adminpanel')">
+                    LOGIN
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
