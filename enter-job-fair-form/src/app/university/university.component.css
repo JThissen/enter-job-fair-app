@@ -205,7 +205,6 @@ td.mat-cell {
 @media screen and (max-width: 1279px) {
     .sidenav-content-container {
         color: white;
-        /* padding: 168px 20px; */
         padding: 16px;
         margin-left: 20px;
         margin-right: 20px;
@@ -215,7 +214,6 @@ td.mat-cell {
 @media screen and (min-width: 1280px) and (max-width: 1919px) {
     .sidenav-content-container {
         color: white;
-        /* padding: 168px 112px; */
         padding: 16px;
         max-width: 2400px;
         margin-left: 75px;
@@ -226,11 +224,7 @@ td.mat-cell {
 @media screen and (min-width: 1920px) {
     .sidenav-content-container {
         color: white;
-        /* padding: 168px 112px; */
         padding: 16px;
-        /* max-width: 1500px;
-        margin-left: auto;
-        margin-right: auto; */
         margin-left: 75px;
         margin-right: 75px;
     }
