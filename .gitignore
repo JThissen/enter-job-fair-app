@@ -1,0 +1,11 @@
+/enter-job-fair-api/.vs
+/enter-job-fair-api/enter-job-fair-api/enter-job-fair-api.csproj.user
+/enter-job-fair-api/enter-job-fair-api/bin
+/enter-job-fair-api/enter-job-fair-api/obj
+
+#ignore bin and obj
+bin
+obj
+
+#ignore vscode
+**/.vscode/
