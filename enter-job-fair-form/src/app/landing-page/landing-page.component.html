@@ -7,7 +7,7 @@
 
 <div class="background">
     <div class="form-content" fxLayout="column" fxLayoutAlign="center center">
-        <img class="enter_image" src="assets/logo-slogan-footer.svg" alt="Enter logo">
+        <img class="enter-image" src="assets/logo-slogan-footer.svg" alt="Enter logo">
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="get_started_container">
             <mat-form-field class="select-event" appearance="outline" color="accent">
@@ -25,25 +25,27 @@
 
         <div #cards_ref fxLayout="row wrap" fxLayoutAlign="center stretch" class="card-container" fxLayoutGap="20px" fxLayoutGap.xs="0px">
             <ng-container *ngIf="this.show_all; else show_few">
-                <div [@show_all] *ngFor="let item of this.university_data; let i = index;" [ngStyle]="{background: this.gradients[i]}" class="card-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(100%)" fxFlex.xs="0 1 calc(100%)">
-                    <img class="image-eindhoven" [src]="this.university_data[i]?.image" alt="Enter logo">
+                <div [@show_all] *ngFor="let item of this.university_data; let i = index;" [ngStyle]="{background: this.gradients[i]}" class="card-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 20px)"
+                    fxFlex.lt-md="0 1 calc(100%)" fxFlex.xs="0 1 calc(100%)">
+                    <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
                     <div class="card-title">{{this.university_data[i]?.location}}</div>
                     <div class="card-university mat-body-strong">{{this.university_data[i]?.name}}</div>
                     <div class="card-circle"></div>
                     <div class="card-inner_circle">
-                        <img class="image-eindhoven_logo" [src]="this.university_data[i]?.icon" alt="tu_eindhoven logo">
+                        <img class="image-logo" [src]="this.university_data[i]?.icon" alt="tu_eindhoven logo">
                     </div>
                 </div>
             </ng-container>
             <ng-template #show_few>
                 <ng-container *ngFor="let item of this.university_data; let i = index;">
-                    <div [@show_few] *ngIf="!this.show_all && i<3" [ngStyle]="{background: this.gradients[i]}" class="card-content .test-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 14px)" fxFlex.lt-md="0 1 calc(100%)" fxFlex.xs="0 1 calc(100%)">
-                        <img class="image-eindhoven" [src]="this.university_data[i]?.image" alt="Enter logo">
+                    <div [@show_few] *ngIf="!this.show_all && i<3" [ngStyle]="{background: this.gradients[i]}" class="card-content .test-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 14px)" fxFlex.lt-md="0 1 calc(100%)"
+                        fxFlex.xs="0 1 calc(100%)">
+                        <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
                         <div class="card-title">{{this.university_data[i]?.location}}</div>
                         <div class="card-university mat-body-strong">{{this.university_data[i]?.name}}</div>
                         <div class="card-circle"></div>
                         <div class="card-inner_circle">
-                            <img class="image-eindhoven_logo" [src]="this.university_data[i]?.icon" alt="tu_eindhoven logo">
+                            <img class="image-logo" [src]="this.university_data[i]?.icon" alt="tu_eindhoven logo">
                         </div>
                     </div>
                 </ng-container>

@@ -6,9 +6,9 @@
             </div>
             <mat-action-list>
                 <mat-list-item class="sidenav-item" (click)="this.reroute('/login/adminpanel/overview')">
-                    <div class="sidenav-item-content" fxLayout="row">
-                          <mat-icon class="sidenav-item-icon">group</mat-icon>
-                          <div fxLayout="column">
+                    <div fxLayout="row">
+                        <mat-icon class="sidenav-item-icon">group</mat-icon>
+                        <div fxLayout="column">
                             <div class="sidenav-item-header">Candidates
                             </div>
                             <div class="sidenav-item-subtitle">List of potential candidates</div>
@@ -17,28 +17,28 @@
                 </mat-list-item>
 
                 <mat-list-item class="sidenav-item" (click)="this.reroute('/login/adminpanel/universities')">
-                    <div class="sidenav-item-content" fxLayout="row">
+                    <div fxLayout="row">
                         <mat-icon class="sidenav-item-icon">event</mat-icon>
                         <div fxLayout="column">
-                          <div class="sidenav-item-header">Events
-                          </div>
-                          <div class="sidenav-item-subtitle">Create, edit and delete</div>
-                      </div>
-                  </div>
+                            <div class="sidenav-item-header">Events
+                            </div>
+                            <div class="sidenav-item-subtitle">Create, edit and delete</div>
+                        </div>
+                    </div>
                 </mat-list-item>
             </mat-action-list>
         </mat-sidenav>
 
         <mat-sidenav-content class="sidenav-content">
-          <mat-toolbar color="primary">
-              <mat-toolbar-row>
-                <mat-icon (click)="sidenav.toggle()" class="toolbar-icon" matTooltip="Menu">menu</mat-icon>
-                  <span class="toolbar-spacer"></span>
-                  <mat-icon class="toolbar-icon" matTooltip="Logout" (click)="this.reroute('/')">exit_to_app</mat-icon>
-              </mat-toolbar-row>
-          </mat-toolbar>
-          
-          <router-outlet></router-outlet>
+            <mat-toolbar color="primary">
+                <mat-toolbar-row>
+                    <mat-icon (click)="sidenav.toggle()" class="toolbar-icon" matTooltip="Menu">menu</mat-icon>
+                    <span class="toolbar-spacer"></span>
+                    <mat-icon class="toolbar-icon" matTooltip="Logout" (click)="this.reroute('/')">exit_to_app</mat-icon>
+                </mat-toolbar-row>
+            </mat-toolbar>
+
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

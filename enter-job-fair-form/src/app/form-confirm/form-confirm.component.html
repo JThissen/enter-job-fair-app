@@ -1,7 +1,7 @@
 <div class="background">
     <form class="form-content" (ngSubmit)="this.form_data.on_submit()" fxLayout="column" fxLayoutAlign="start">
         <div id="event_header">{{this.form_data.university_data?.event_name}}</div>
-        <div #event_subheader id="event_subheader">{{this.form_options.event_subheader}}</div>
+        <div #event_subheader id="event_subheader">{{this.form_data.event_location_year}}</div>
         <div id="event_confirmation">CONFIRMATION</div>
 
         <div fxLayout.lt-sm="column" fxLayout="row" fxLayoutGap.lt-sm="0px" fxLayoutGap="23px">
@@ -28,7 +28,7 @@
             <mat-label>Phone number</mat-label>
             <input id="test123" matInput placeholder="e.g. +31 (0)40 214 1020" type="text" [formControl]=this.form_data.phone_number>
         </mat-form-field>
-        
+
         <div class="form-content-radio">
             <label class="form-content-radio-group-title">Study information</label>
             <mat-radio-group class="form-content-radio-group">
@@ -51,7 +51,8 @@
             <mat-divider class="divider"></mat-divider>
 
             <mat-radio-group fxLayout="row wrap" class="form-content-radio-group">
-                <mat-radio-button fxFlex="50%" class="form-content-radio-button" *ngFor="let i of this.form_data.university_data?.study_programs" [value]="i" [checked]="i === this.form_data.study_program.value" (change)="this.form_data.set_form_control_value(this.form_data.study_program, $event);" [disabled]=true>
+                <mat-radio-button fxFlex="50%" class="form-content-radio-button" *ngFor="let i of this.form_data.university_data?.study_programs" [value]="i" [checked]="i === this.form_data.study_program.value" (change)="this.form_data.set_form_control_value(this.form_data.study_program, $event);"
+                    [disabled]=true>
                     {{i}}
                 </mat-radio-button>
             </mat-radio-group>

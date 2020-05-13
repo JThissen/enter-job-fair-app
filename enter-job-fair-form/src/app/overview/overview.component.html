@@ -1,126 +1,126 @@
 <div class="sidenav-content-container">
     <div class="mat-display-2 candidates" style="margin: 0px">
-      Candidates
-      <mat-icon class="sidenav-title-icon">group</mat-icon>
+        Candidates
+        <mat-icon class="sidenav-title-icon">group</mat-icon>
     </div>
     <div class="mat-h2 sidenav-subtitle">
         Displays a list of potential candidates. Items may be modified, deleted, sorted and filtered.
     </div>
 
     <mat-form-field appearance="outline" color="accent">
-      <mat-label>Display candidates</mat-label>
-      
-      <mat-select [(value)]="this.selected" (selectionChange)="this.on_selection_change($event)" [placeholder]="this.selected">
-        <mat-option value="all">All</mat-option>
-        <mat-option *ngFor="let item of this.university_data; let i = index;" value={{item.id}}>{{this.university_data[i]?.name}}</mat-option>
-      </mat-select>
+        <mat-label>Display candidates</mat-label>
+
+        <mat-select [(value)]="this.selected" (selectionChange)="this.on_selection_change($event)" [placeholder]="this.selected">
+            <mat-option value="all">All</mat-option>
+            <mat-option *ngFor="let item of this.university_data; let i = index;" value={{item.id}}>{{this.university_data[i]?.name}}</mat-option>
+        </mat-select>
     </mat-form-field>
-  </div>
+</div>
 
-  <div class="sidenav-content-container" style="margin-top: 50px;" ngStyle.xs="margin-top: 20px; margin-bottom: 25px">
-      <mat-form-field appearance="outline" color="accent">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Computer Science">
-      </mat-form-field>
-        
-      <div class="mat-elevation-z8">
+<div class="sidenav-content-container" style="margin-top: 50px;" ngStyle.xs="margin-top: 20px; margin-bottom: 25px">
+    <mat-form-field appearance="outline" color="accent">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Computer Science">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
         <table mat-table [dataSource]="this.current_applicants_data" multiTemplateDataRows matSort>
-          <ng-container matColumnDef="first_name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
-            <td mat-cell *matCellDef="let row">{{row.first_name}}</td>
-          </ng-container>
-      
-          <ng-container matColumnDef="last_name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
-            <td mat-cell *matCellDef="let row">{{row.last_name}}</td>
-          </ng-container>
+            <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
+                <td mat-cell *matCellDef="let row">{{row.first_name}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="email_address">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email address</th>
-            <td mat-cell *matCellDef="let row">{{row.email_address}}</td>
-          </ng-container>
+            <ng-container matColumnDef="last_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
+                <td mat-cell *matCellDef="let row">{{row.last_name}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="phone_number">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</th>
-            <td mat-cell *matCellDef="let row">{{row.phone_number}}</td>
-          </ng-container>
+            <ng-container matColumnDef="email_address">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email address</th>
+                <td mat-cell *matCellDef="let row">{{row.email_address}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="degree_level">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Degree level</th>
-            <td mat-cell *matCellDef="let row">{{row.degree_level}}</td>
-          </ng-container>
+            <ng-container matColumnDef="phone_number">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</th>
+                <td mat-cell *matCellDef="let row">{{row.phone_number}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="study_information_track">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Track</th>
-            <td mat-cell *matCellDef="let row">{{row.study_information_track}}</td>
-          </ng-container>
-        
-          <ng-container matColumnDef="study_program">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Study program</th>
-            <td mat-cell *matCellDef="let row">{{row.study_program}}</td>
-          </ng-container>
+            <ng-container matColumnDef="degree_level">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Degree level</th>
+                <td mat-cell *matCellDef="let row">{{row.degree_level}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="graduation_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Graduation date (expected)</th>
-            <td mat-cell *matCellDef="let row">{{this.beautify_date(row.graduation_date)}}</td>
-          </ng-container>
+            <ng-container matColumnDef="study_information_track">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Track</th>
+                <td mat-cell *matCellDef="let row">{{row.study_information_track}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="availability_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Availability date</th>
-            <td mat-cell *matCellDef="let row">{{this.beautify_date(row.availability_date)}}</td>
-          </ng-container>
+            <ng-container matColumnDef="study_program">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Study program</th>
+                <td mat-cell *matCellDef="let row">{{row.study_program}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="career_lunch_participation">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Career lunch</th>
-            <td mat-cell *matCellDef="let row">{{row.career_lunch_participation}}</td>
-          </ng-container>
+            <ng-container matColumnDef="graduation_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Graduation date (expected)</th>
+                <td mat-cell *matCellDef="let row">{{this.beautify_date(row.graduation_date)}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="notes">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Notes</th>
-            <td #notes id="notes" mat-cell *matCellDef="let row">{{row.notes}}</td>
-          </ng-container>
+            <ng-container matColumnDef="availability_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Availability date</th>
+                <td mat-cell *matCellDef="let row">{{this.beautify_date(row.availability_date)}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="submission_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Submission date</th>
-            <td mat-cell *matCellDef="let row">{{this.beautify_date(row.submission_date)}}</td>
-          </ng-container>
+            <ng-container matColumnDef="career_lunch_participation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Career lunch</th>
+                <td mat-cell *matCellDef="let row">{{row.career_lunch_participation}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="remark">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Remark</th>
-              <td mat-cell *matCellDef="let row">{{row.remark}}</td>
-          </ng-container>
+            <ng-container matColumnDef="notes">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Notes</th>
+                <td #notes id="notes" mat-cell *matCellDef="let row">{{row.notes}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>   
-            <td mat-cell *matCellDef="let row; let i = dataIndex;">
-              <div fxLayout="row" fxLayoutAlign="end none">
-                  <mat-icon style="user-select: none; z-index: 3;" matTooltip="Delete candidate" (click)="this.remove_applicant(i)">delete</mat-icon>
-              </div>
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="submission_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Submission date</th>
+                <td mat-cell *matCellDef="let row">{{this.beautify_date(row.submission_date)}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="expanded_row">
-            <td mat-cell *matCellDef="let element; let j = dataIndex;" [attr.colspan]="this.column_names.length">
-              <div class="table-expanded_row-container" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"> 
-                <mat-form-field class="form-content-notes" appearance="outline" color="accent">
-                  <mat-label>Remark</mat-label>
-                  <textarea #textarea_notes class="form-content-notes-textarea" matInput placeholder="Leave a remark." [maxLength]=500 [formControl]="this.edit_remark"></textarea>
-                </mat-form-field>
+            <ng-container matColumnDef="remark">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Remark</th>
+                <td mat-cell *matCellDef="let row">{{row.remark}}</td>
+            </ng-container>
 
-                <div class="table-expanded_row-button-container">
-                  <button mat-stroked-button color="accent" type="button" style="margin-right: 25px;" (click)="this.save_remark(this.edit_remark, j);">
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row; let i = dataIndex;">
+                    <div fxLayout="row" fxLayoutAlign="end none">
+                        <mat-icon style="user-select: none; z-index: 3;" matTooltip="Delete candidate" (click)="this.remove_applicant(i)">delete</mat-icon>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expanded_row">
+                <td mat-cell *matCellDef="let element; let j = dataIndex;" [attr.colspan]="this.column_names.length">
+                    <div class="table-expanded_row-container" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <mat-form-field class="form-content-notes" appearance="outline" color="accent">
+                            <mat-label>Remark</mat-label>
+                            <textarea #textarea_notes class="form-content-notes-textarea" matInput placeholder="Leave a remark." [maxLength]=500 [formControl]="this.edit_remark"></textarea>
+                        </mat-form-field>
+
+                        <div class="table-expanded_row-button-container">
+                            <button mat-stroked-button color="accent" type="button" style="margin-right: 25px;" (click)="this.save_remark(this.edit_remark, j);">
                     Save
                   </button>
-                </div>
-              </div>
-            </td>
-          </ng-container>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="this.column_names"></tr>
-          <tr mat-row *matRowDef="let element; columns: this.column_names;" class="table-row" (click)="expandedElement = expandedElement === element ? null : element;"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['expanded_row']" class="table-expanded_row"></tr>
+            <tr mat-header-row *matHeaderRowDef="this.column_names"></tr>
+            <tr mat-row *matRowDef="let element; columns: this.column_names;" class="table-row" (click)="expandedElement = expandedElement === element ? null : element;"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['expanded_row']" class="table-expanded_row"></tr>
         </table>
-      
-      </div>
-      <mat-paginator class="table-paginator" [pageSize]="this.page_size" [pageSizeOptions]="[5, 10, 25, 50, 100]" color="accent" showFirstLastButtons></mat-paginator>
-  </div>
+
+    </div>
+    <mat-paginator class="table-paginator" [pageSize]="this.page_size" [pageSizeOptions]="[5, 10, 25, 50, 100]" color="accent" showFirstLastButtons></mat-paginator>
+</div>

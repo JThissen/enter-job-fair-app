@@ -1,32 +1,32 @@
 <div class="sidenav-content-container">
     <div class="mat-display-2 admin-panel" style="margin: 0px">
-      Admin panel
+        Admin panel
     </div>
     <div class="mat-display-1 admin-welcome">
         Welcome, [name]!
     </div>
     <div class="mat-h1 admin-text">
-      Use the side panel to get started, or click on one of the containers below.
+        Use the side panel to get started, or click on one of the containers below.
     </div>
-  </div>
+</div>
 
-  <div class="admin-container" fxLayout.gt-xs="row" fxLayout.lt-sm ="column" fxLayoutGap="20px">
+<div class="admin-container" fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
     <div class="admin-box" fxFlex="50" (click)="this.reroute('/login/adminpanel/overview')">
-      <div class="mat-display-1 admin-box-title" style="margin: 0px">
-        Candidates
-        <mat-icon class="admin-box-title-icon">group</mat-icon>
-      </div>
-      <div class="mat-h2 admin-box-text">
-        Displays a list of potential candidates. Items may be modified, deleted, sorted and filtered.
-      </div>
+        <div class="mat-display-1 admin-box-title" style="margin: 0px">
+            Candidates
+            <mat-icon class="admin-box-title-icon">group</mat-icon>
+        </div>
+        <div class="mat-h2 admin-box-text">
+            Displays a list of potential candidates. Items may be modified, deleted, sorted and filtered.
+        </div>
     </div>
     <div class="admin-box" fxFlex="50" (click)="this.reroute('/login/adminpanel/universities')">
-      <div class="mat-display-1 admin-box-title" style="margin: 0px">
-        Events
-        <mat-icon class="admin-box-title-icon">event</mat-icon>
-      </div>
-      <div class="mat-h2 admin-box-text">
-        Allows for the creation and modification of Events.
-      </div>
+        <div class="mat-display-1 admin-box-title" style="margin: 0px">
+            Events
+            <mat-icon class="admin-box-title-icon">event</mat-icon>
+        </div>
+        <div class="mat-h2 admin-box-text">
+            Allows for the creation and modification of Events.
+        </div>
     </div>
-  </div>
+</div>

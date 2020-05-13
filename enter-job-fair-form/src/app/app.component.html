@@ -1,9 +1,9 @@
 <main class="main">
-  <div [hidden]="!this.global.loading">
-    <mat-progress-bar class="progress_bar" mode="indeterminate"></mat-progress-bar>
-  </div>
-  <div [@routeAnimations]="prepare_route(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
-  </div>
+    <div [hidden]="!this.global.loading">
+        <mat-progress-bar class="progress_bar" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div [@routeAnimations]="prepare_route(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+    </div>
 </main>
 <app-footer fxHide="{{this.global.logged_in}}" class="footer"></app-footer>
