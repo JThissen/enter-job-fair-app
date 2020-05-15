@@ -14,13 +14,6 @@ namespace enter_job_fair_api.Context
         public DbSet<Admin> Admins { get; set; }
 
         public EnterDbContext(DbContextOptions<EnterDbContext> options) : base(options)
-        {
-            
-        }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<University>().ToTable("University");
-        //}
+        { }
     }
 }

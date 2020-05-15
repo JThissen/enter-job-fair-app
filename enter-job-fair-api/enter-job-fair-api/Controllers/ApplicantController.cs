@@ -31,7 +31,7 @@ namespace enter_job_fair_api.Controllers
             if (applicants.Count == 0)
                 return NotFound();
 
-            return Ok(applicants);
+            return applicants;
         }
 
         [HttpGet("{id}")]
@@ -42,31 +42,26 @@ namespace enter_job_fair_api.Controllers
             if (applicant == null)
                 return NotFound();
 
-            return Ok(applicant);
+            return applicant;
         }
 
         [HttpGet("university")]
-        public async Task<ActionResult<Applicant>> GetApplicantsUniversity(Guid universityId)
+        public async Task<ActionResult<List<Applicant>>> GetApplicantsUniversity(Guid universityId)
         {
-            logger.LogWarning(universityId.ToString());
             List<Applicant> applicants = await applicantService.GetApplicantsUniversityAsync(universityId);
 
             if (applicants.Count == 0)
                 return NotFound();
 
-            return Ok(applicants);
+            return applicants;
         }
 
         [HttpPost]
         public async Task<ActionResult<Applicant>> PostApplicant([FromBody] Applicant applicant, Guid universityId)
         {
-            logger.LogWarning(universityId.ToString());
             await applicantService.PostApplicantAsync(applicant, universityId);
-            await applicantService.GetApplicantAsync(applicant.Id);
             return CreatedAtAction(nameof(GetApplicant), new { id = applicant.Id }, applicant);
         }
-
-        
 
         [HttpPut]
         public async Task<ActionResult> PutApplicant([FromBody] Applicant applicant)
@@ -92,7 +87,7 @@ namespace enter_job_fair_api.Controllers
                 return NotFound();
 
             await applicantService.DeleteApplicantAsync(existingApplicant);
-            return existingApplicant;
+            return NoContent();
         }
     }
 }

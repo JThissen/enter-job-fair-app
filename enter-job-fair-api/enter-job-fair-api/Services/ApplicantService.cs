@@ -61,14 +61,12 @@ namespace enter_job_fair_api.Services
 
         public async Task<bool> PutApplicantAsync(Applicant applicant)
         {
-            //Applicant selected_applicant = await context.Applicants.FirstOrDefaultAsync(i => i.UniversityId == applicant.UniversityId && i.Id == applicant.Id);
             context.Entry(applicant).State = EntityState.Modified;
             return (await context.SaveChangesAsync() > 0);
         }
 
         public async Task<bool> PutApplicantRemarkAsync(Guid id, string remark)
         {
-            //Applicant applicant = new Applicant() { Id = id, Remark = remark };
             Applicant applicant = await context.Applicants.FirstOrDefaultAsync(i => i.Id == id);
             context.Applicants.Attach(applicant);
             context.Entry(applicant).Property(i => i.Remark).IsModified = true;

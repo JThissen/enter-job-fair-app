@@ -16,8 +16,6 @@ namespace enter_job_fair_api.Models
         public string EventName { get; set; }
         public int EventYear { get; set; }
         public string Location { get; set; }
-        //public IFormFile Image { get; set; }
-        //public IFormFile Icon { get; set; }
         public List<string> StudyPrograms { get; set; }
     }
 }

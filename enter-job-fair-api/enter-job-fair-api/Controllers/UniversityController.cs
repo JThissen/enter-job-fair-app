@@ -35,7 +35,7 @@ namespace enter_job_fair_api.Controllers
             if (universities.Count == 0)
                 return NotFound();
 
-            return Ok(universities);
+            return universities;
         }
         
         [HttpGet("{id}")]
@@ -46,8 +46,8 @@ namespace enter_job_fair_api.Controllers
 
             if (university == null)
                 return NotFound();
-            
-            return Ok(university);
+
+            return university;
         }
 
         [HttpPost]
@@ -62,20 +62,21 @@ namespace enter_job_fair_api.Controllers
             return CreatedAtAction(nameof(GetUniversity), new { id = universityModel.Id }, universityModel);
         }
 
-        [HttpPut("file")]
-        public async Task<IActionResult> UploadFileAsync([FromForm] IFormFile myFile, [FromForm] Guid universityId, [FromForm] string type)
-        {
-            byte[] fileBytes = await Utilities.ReadFormFileAsync(myFile);
-            await universityService.PutFileAsync(universityId, fileBytes, type);
-            return NoContent();
-        }
-
         [HttpPut]
         public async Task<ActionResult> PutUniversity([FromBody] University university)
         {
             await universityService.PutUniversityAsync(university);
             return NoContent();
         }
+
+        [HttpPut("file")]
+        public async Task<ActionResult> UploadFileAsync([FromForm] IFormFile myFile, [FromForm] Guid universityId, [FromForm] string type)
+        {
+            byte[] fileBytes = await Utilities.ReadFormFileAsync(myFile);
+            await universityService.PutFileAsync(universityId, fileBytes, type);
+            return NoContent();
+        }
+        
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<University>> DeleteUniversity(Guid id)
@@ -86,7 +87,7 @@ namespace enter_job_fair_api.Controllers
                 return NotFound();
 
             await universityService.DeleteUniversityAsync(existingUniversity);
-            return existingUniversity;
+            return NoContent();
         }
     }
 }

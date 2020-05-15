@@ -28,7 +28,7 @@ namespace enter_job_fair_api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseUrls("http://localhost:5000", "https://localhost:5001");
+                    webBuilder.UseUrls("http://localhost:5000", "https://localhost:5001");
                 });
     }
 }

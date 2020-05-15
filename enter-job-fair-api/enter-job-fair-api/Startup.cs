@@ -19,19 +19,19 @@ namespace enter_job_fair_api
     public class Startup
     {
         private readonly IConfiguration configuration;
-        private readonly string corsPolicy;
+        private readonly IDictionary<string, string> corsPolicies;
 
         public Startup()
         {
-            this.configuration = BuildConfiguration().Build();
-            corsPolicy = "front_end_policy";
+            configuration = BuildConfiguration().Build();
+            corsPolicies = new Dictionary<string, string>(){{"default_policy", "allow all from appsettings:baseurl"}};
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(setupAction =>
             {
-                setupAction.AddPolicy(corsPolicy, policy =>
+                setupAction.AddPolicy(corsPolicies["default_policy"], policy =>
                 {
                     policy.WithOrigins(configuration["AppSettings:BaseUrl"])
                     .AllowAnyMethod()
@@ -57,7 +57,7 @@ namespace enter_job_fair_api
             else if (env.IsProduction() || env.IsStaging())
                 app.UseExceptionHandler("/Error");
 
-            app.UseCors(corsPolicy);
+            app.UseCors(corsPolicies["default_policy"]);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

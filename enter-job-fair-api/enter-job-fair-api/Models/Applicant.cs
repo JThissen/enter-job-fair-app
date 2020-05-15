@@ -7,11 +7,6 @@ using System.Threading.Tasks;
 
 namespace enter_job_fair_api.Models
 {
-    public enum DEGREE_LEVEL
-    {
-        BSc, MSc, PDEng, PhD
-    }
-
     public class Applicant
     {
         [Key]
@@ -25,7 +20,6 @@ namespace enter_job_fair_api.Models
         public string StudyProgram { get; set; }
         public DateTimeOffset? GraduationDate { get; set; }
         public DateTimeOffset Availability { get; set; }
-
         public bool Lunch { get; set; }
         public bool DutchSpeaking { get; set; }
         public string Notes { get; set; }

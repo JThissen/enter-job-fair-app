@@ -10,14 +10,10 @@ namespace enter_job_fair_api.Services
     {
         public Task<List<University>> GetUniversitiesAsync();
         public Task<University> GetUniversityAsync(Guid id);
-        //public Task<bool> PostUniversityAsync(University university);
         public Task<bool> PostUniversityAsync(UniversityModel universityModel, byte[] image, byte[] icon);
         public Task<bool> PutUniversityAsync(University university);
         public Task<bool> DeleteUniversityAsync(University university);
         public Task<University> FindUniversityAsync(Guid id);
-
-
         public Task<bool> PutFileAsync(Guid universityId, byte[] bytes, string type);
-
     }
 }
