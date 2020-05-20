@@ -23,10 +23,50 @@
             </button>
         </div>
 
-        <div #cards_ref fxLayout="row wrap" fxLayoutAlign="center stretch" class="card-container" fxLayoutGap="20px" fxLayoutGap.xs="0px">
-            <ng-container *ngIf="this.show_all; else show_few">
-                <div [@show_all] *ngFor="let item of this.university_data; let i = index;" [ngStyle]="{background: this.gradients[i]}" class="card-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 20px)"
-                    fxFlex.lt-md="0 1 calc(100%)" fxFlex.xs="0 1 calc(100%)">
+        <!-- <div style="background-color: red;" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="16px grid">
+            <div *ngFor="let i of this.university_data" style="height: 200px;  background-color: blue;">
+                <div fxFlex="1 0 200px" style="background-color: green"></div>
+            </div>
+        </div> -->
+
+
+        <div #cards_ref fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="16px grid" fxLayoutAlign="center" class="card-container">
+            <ng-container *ngIf="this.toggle(); else show_few">
+                <div [@show_all] (@show_all.done)="this.animation_complete($event)" *ngFor="let item of this.university_data; let i = index;" id="{{this.university_data[i].id}}">
+                    <div fxFlex="1 0 200px" class="card-content" [ngStyle]="{background: this.gradients[i]}" fxLayout="column" fxLayoutAlign="start center" id="{{this.university_data[i].id}}">
+                        <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
+                        <div class="card-title">{{this.university_data[i]?.location}}</div>
+                        <div class="card-university mat-body-strong">{{this.university_data[i]?.name}}</div>
+                        <div class="card-circle"></div>
+                        <div class="card-inner_circle">
+                            <img class="image-logo" [src]="this.university_data[i]?.icon" alt="event logo">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #show_few>
+                <ng-container *ngFor="let item of this.university_data; let i = index;">
+                    <div [@show_few] (@show_few.done)="this.animation_complete($event)" *ngIf="!this.toggle() && i<3" id="{{this.university_data[i].id}}">
+                        <div fxFlex="1 0 200px" class="card-content" [ngStyle]="{background: this.gradients[i]}" fxLayout="column" fxLayoutAlign="start center" id="{{this.university_data[i].id}}">
+                            <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
+                            <div class="card-title">{{this.university_data[i]?.location}}</div>
+                            <div class="card-university mat-body-strong">{{this.university_data[i]?.name}}</div>
+                            <div class="card-circle"></div>
+                            <div class="card-inner_circle">
+                                <img class="image-logo" [src]="this.university_data[i]?.icon" alt="event logo">
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </div>
+
+
+        <!-- 
+        <div #cards_ref fxLayout="row wrap" fxLayoutAlign="center" class="card-container" fxLayoutGap.gt-xs="20px" fxLayoutGap.xs="0px">
+            <ng-container *ngIf="this.toggle(); else show_few">
+                <div [@show_all] (@show_all.done)="this.animation_complete($event)" *ngFor="let item of this.university_data; let i = index;" [ngStyle]="{background: this.gradients[i]}" class="card-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center"
+                    fxFlex.gt-md="1 0 calc(33.3%)" fxFlex.lt-md="0 1 calc(100%)" fxFlex.xs="0 1 calc(100%)">
                     <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
                     <div class="card-title">{{this.university_data[i]?.location}}</div>
                     <div class="card-university mat-body-strong">{{this.university_data[i]?.name}}</div>
@@ -38,7 +78,7 @@
             </ng-container>
             <ng-template #show_few>
                 <ng-container *ngFor="let item of this.university_data; let i = index;">
-                    <div [@show_few] *ngIf="!this.show_all && i<3" [ngStyle]="{background: this.gradients[i]}" class="card-content .test-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 14px)" fxFlex.lt-md="0 1 calc(100%)"
+                    <div [@show_few] *ngIf="!this.toggle() && i<3" [ngStyle]="{background: this.gradients[i]}" class="card-content" id="{{this.university_data[i].id}}" fxLayout="column" fxLayoutAlign="start center" fxFlex.gt-md="0 1 calc(33.3% - 14px)" fxFlex.lt-md="0 1 calc(100%)"
                         fxFlex.xs="0 1 calc(100%)">
                         <img class="image" [src]="this.university_data[i]?.image" alt="Enter logo">
                         <div class="card-title">{{this.university_data[i]?.location}}</div>
@@ -50,7 +90,7 @@
                     </div>
                 </ng-container>
             </ng-template>
-        </div>
+        </div> -->
 
         <button mat-stroked-button class="show_events" color="accent" type="button" (click)="this.show_all_events()">
             {{this.show_events_str}}
